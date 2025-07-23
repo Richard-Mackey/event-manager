@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useState } from "react";
 
-export default function Login({ handleLogin }) {
+export default function Login({ handleLogin, setLogin }) {
   const [loginError, setLoginError] = useState("");
   const formik = useFormik({
     initialValues: {
@@ -53,6 +53,12 @@ export default function Login({ handleLogin }) {
           ) : null}
           <button className="btn btn-primary w-100" type="submit">
             Submit
+          </button>
+          <button
+            className="btn btn-primary w-100"
+            onClick={() => setLogin("register")}
+          >
+            Don't have an account? Register here
           </button>
         </form>
       </div>
