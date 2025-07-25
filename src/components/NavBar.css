@@ -1,0 +1,13 @@
+.navbar-brand {
+  margin-left: -12px;
+  padding-left: 0;
+}
+
+.logoNav {
+  background-image: url(/planner.png);
+  background-repeat: no-repeat;
+  margin-right: 50px;
+  height: 60px;
+  width: 60px;
+  background-size: contain;
+}

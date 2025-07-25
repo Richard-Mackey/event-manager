@@ -5,13 +5,17 @@ import { useEvents } from "./EventsContext.jsx";
 import { useEffect } from "react";
 
 export default function EditEvent() {
+  // Extract event ID from URL parameters for dynamic routing
   const { id } = useParams();
+  // Context API integration for global event state management
   const { editEvent, events } = useEvents();
+  // React Router navigation for use after form submission
   const navigate = useNavigate();
 
   const foundEvent = events.find((event) => {
     return event.id === Number(id);
   });
+  // brings up event values for editing
   const formik = useFormik({
     initialValues: {
       name: foundEvent.name,
@@ -22,10 +26,14 @@ export default function EditEvent() {
       description: foundEvent.description,
     },
     onSubmit: (values) => {
+      // Update event in global state using Context API method
       editEvent(Number(id), values);
+      // Navigate back to dashboard after successful update
       navigate("/");
     },
   });
+  // the following is used to add an arbitary time of 1 hour to the event start time
+  // this can be modified by the user
   const convertTimeStringToDate = (time) => {
     const splitTime = time.split(":");
     const hours = parseInt(splitTime[0]);
@@ -45,21 +53,27 @@ export default function EditEvent() {
     return paddedHours + ":" + paddedMinutes;
   };
   useEffect(() => {
+    // Only proceed if start time is set and not empty
     if (formik.values.starttime && formik.values.starttime !== "") {
+      // Check if current end time is invalid (before or equal to start time)
       if (
         formik.values.endtime &&
         formik.values.endtime <= formik.values.starttime
       ) {
+        // Calculate suggested end time (start time + 1 hour)
         const dateObject = convertTimeStringToDate(formik.values.starttime);
         const dateWithOneHour = addOneHour(dateObject);
         const suggestedEndTime = convertDateToTimeString(dateWithOneHour);
+        // Automatically update end time field with suggestion
         formik.setFieldValue("endtime", suggestedEndTime);
       }
     }
   }, [formik.values.starttime]);
+  // Conditional rendering based on whether event was found
   if (foundEvent) {
     return (
       <div>
+        {/* Header section with spacing for fixed navigation */}
         <div style={{ paddingTop: "80px" }}>
           <h1>Edit event page</h1>
         </div>
@@ -98,6 +112,7 @@ export default function EditEvent() {
               value={formik.values.starttime}
             />
             <label htmlFor="endtime">End time</label>
+            {/* End time field with validation constraint */}
             <input
               className="form-control mb-3 bg-white text-dark"
               id="endtime"
@@ -136,9 +151,11 @@ export default function EditEvent() {
       </div>
     );
   } else {
+    // Error state: Event not found (invalid ID or deleted event)
     return (
       <div>
-        <p>Error message here</p>
+        <p>Event not found</p>
+        {/* navigate back to dashboard on button click */}
         <button onClick={() => navigate("/")}>Back to Dashboard</button>
       </div>
     );

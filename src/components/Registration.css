@@ -1,0 +1,18 @@
+.logoLogin {
+  background-image: url(/planner.png); /* downloaded for free from https://www.flaticon.com/free-icon/planner_3277398?term=event+planner&page=1&position=2&origin=search&related_id=3277398*/
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 280px; /* Maximum width on desktop */
+  height: 60px; /* Smaller height for mobile */
+  background-size: contain;
+}
+
+/* Larger on bigger screens */
+@media (min-width: 768px) {
+  .logoLogin {
+    height: 100px; /* Original height on tablet/desktop */
+    max-width: 300px;
+  }
+}
