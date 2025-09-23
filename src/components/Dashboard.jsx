@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export default function Dashboard({ user }) {
   // Context API integration for global event state management
-  const { events, deleteEvent } = useEvents();
+  const { events, deleteEvent, duplicateEvent } = useEvents();
   // React Router navigation hook
   const navigate = useNavigate();
   // Month names array for date display on the cards
@@ -92,24 +92,74 @@ export default function Dashboard({ user }) {
                     <p className="card-text">Location: {event.location}</p>
                     <p className="card-text">{event.description}</p>
                   </div>
-                  <div className="content-center mt-3">
-                    <button
-                      className="me-4"
-                      onClick={() => navigate(`/EditEvent/${event.id}`)}
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => {
-                        if (
-                          confirm("Are you sure you want to delete this event?")
-                        ) {
-                          deleteEvent(event.id);
-                        }
-                      }}
-                    >
-                      Delete
-                    </button>
+                  <div className="d-flex justify-content-center mt-3">
+                    <div className="btn-group" role="group">
+                      <button
+                        className="btn btn-outline-primary btn-sm me-2"
+                        onClick={() => navigate(`/EditEvent/${event.id}`)}
+                      >
+                        Edit
+                      </button>
+
+                      <div className="dropdown">
+                        <button
+                          className="btn btn-outline-secondary btn-sm dropdown-toggle me-2"
+                          type="button"
+                          data-bs-toggle="dropdown"
+                        >
+                          Duplicate
+                        </button>
+                        <ul className="dropdown-menu">
+                          <li>
+                            <button
+                              className="dropdown-item"
+                              onClick={() => duplicateEvent(event.id, "day")}
+                            >
+                              Next Day
+                            </button>
+                          </li>
+                          <li>
+                            <button
+                              className="dropdown-item"
+                              onClick={() => duplicateEvent(event.id, "week")}
+                            >
+                              Next Week
+                            </button>
+                          </li>
+                          <li>
+                            <button
+                              className="dropdown-item"
+                              onClick={() => duplicateEvent(event.id, "month")}
+                            >
+                              Next Month
+                            </button>
+                          </li>
+                          <li>
+                            <button
+                              className="dropdown-item"
+                              onClick={() => duplicateEvent(event.id, "year")}
+                            >
+                              Next Year
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <button
+                        className="btn btn-outline-danger btn-sm"
+                        onClick={() => {
+                          if (
+                            confirm(
+                              "Are you sure you want to delete this event?"
+                            )
+                          ) {
+                            deleteEvent(event.id);
+                          }
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>

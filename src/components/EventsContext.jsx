@@ -45,6 +45,40 @@ export const EventsProvider = ({ children }) => {
       })
     );
   };
+  // Add these functions inside EventsProvider, after deleteEvent
+  const calculateNewDate = (originalDate, type) => {
+    const date = new Date(originalDate);
+    switch (type) {
+      case "day":
+        date.setDate(date.getDate() + 1);
+        break;
+      case "week":
+        date.setDate(date.getDate() + 7);
+        break;
+      case "month":
+        date.setMonth(date.getMonth() + 1);
+        break;
+      case "year":
+        date.setFullYear(date.getFullYear() + 1);
+        break;
+    }
+    return date.toISOString().split("T")[0]; // Return YYYY-MM-DD format
+  };
+
+  const duplicateEvent = (eventId, duplicationType) => {
+    const originalEvent = events.find((event) => event.id === eventId);
+    if (!originalEvent) return;
+
+    const newDate = calculateNewDate(originalEvent.date, duplicationType);
+    const duplicatedEvent = {
+      ...originalEvent,
+      id: generateNewId(),
+      date: newDate,
+      name: originalEvent.name,
+    };
+
+    setEvents([...events, duplicatedEvent]);
+  };
   return (
     <EventsContext.Provider
       value={{
@@ -52,6 +86,7 @@ export const EventsProvider = ({ children }) => {
         addEvent, // The add function
         editEvent, // The edit function
         deleteEvent, // The delete function
+        duplicateEvent, // Add this line
       }}
     >
       {children}

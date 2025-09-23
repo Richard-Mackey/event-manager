@@ -72,90 +72,124 @@ export default function EditEvent() {
   // Conditional rendering based on whether event was found
   if (foundEvent) {
     return (
-      <div>
-        {/* Header section with spacing for fixed navigation */}
-        <div style={{ paddingTop: "80px" }}>
-          <h1>Edit event page</h1>
-        </div>
+      <>
+        <div
+          className="edit-event-page"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: `linear-gradient(
+              to bottom,
+              lch(49.78% 77.6 288.98) 0px,
+              lch(49.78% 77.6 288.98) 300px,
+              rgb(216, 214, 213) 300px,
+              rgb(216, 214, 213) 100%
+            )`,
+            zIndex: -1,
+          }}
+        />
 
-        <div className="bg-white p-4 rounded shadow">
-          <form onSubmit={formik.handleSubmit}>
-            <label htmlFor="name">Name</label>
-            <input
-              className="form-control mb-3 bg-white text-dark"
-              id="name"
-              name="name"
-              type="text"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.name}
-            />
+        <div
+          style={{
+            minHeight: "100vh",
+            padding: "20px",
+            paddingTop: "10px",
+          }}
+        >
+          <div className="container text-center">
+            <div className="row justify-content-center">
+              <div className="col-12 col-md-8 col-lg-6">
+                <h2 className="text-white display-5 text-center mt-4">
+                  Edit {foundEvent.name}
+                </h2>
+                <div className="bg-white p-2 p-md-4 rounded shadow add-event-cards">
+                  <form onSubmit={formik.handleSubmit}>
+                    <label htmlFor="name">Name</label>
+                    <input
+                      className="form-control mb-3 bg-white text-dark"
+                      id="name"
+                      name="name"
+                      type="text"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.name}
+                    />
 
-            <label htmlFor="date">Date</label>
-            <input
-              className="form-control mb-3 bg-white text-dark"
-              id="date"
-              name="date"
-              type="date"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.date}
-            />
-            <label htmlFor="starttime">Start time</label>
-            <input
-              className="form-control mb-3 bg-white text-dark"
-              id="starttime"
-              name="starttime"
-              type="time"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.starttime}
-            />
-            <label htmlFor="endtime">End time</label>
-            {/* End time field with validation constraint */}
-            <input
-              className="form-control mb-3 bg-white text-dark"
-              id="endtime"
-              name="endtime"
-              type="time"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.endtime}
-              min={formik.values.starttime}
-            />
-            <label htmlFor="location">Location</label>
-            <input
-              className="form-control mb-3 bg-white text-dark"
-              id="location"
-              name="location"
-              type="text"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.location}
-            />
-            <label htmlFor="description">Description</label>
-            <textarea
-              className="form-control mb-3 bg-white text-dark"
-              id="description"
-              name="description"
-              rows="3"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.description}
-            />
-            <button className="btn btn-primary w-100" type="submit">
-              Update Event
-            </button>
-          </form>
+                    <label htmlFor="date">Date</label>
+                    <input
+                      className="form-control mb-3 bg-white text-dark"
+                      id="date"
+                      name="date"
+                      type="date"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.date}
+                    />
+
+                    <label htmlFor="starttime">Start time</label>
+                    <input
+                      className="form-control mb-3 bg-white text-dark"
+                      id="starttime"
+                      name="starttime"
+                      type="time"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.starttime}
+                    />
+
+                    <label htmlFor="endtime">End time</label>
+                    <input
+                      className="form-control mb-3 bg-white text-dark"
+                      id="endtime"
+                      name="endtime"
+                      type="time"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.endtime}
+                      min={formik.values.starttime}
+                    />
+
+                    <label htmlFor="location">Location</label>
+                    <input
+                      className="form-control mb-3 bg-white text-dark"
+                      id="location"
+                      name="location"
+                      type="text"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.location}
+                    />
+
+                    <label htmlFor="description">Description</label>
+                    <textarea
+                      className="form-control mb-3 bg-white text-dark"
+                      id="description"
+                      name="description"
+                      rows="3"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.description}
+                    />
+
+                    <button className="btn btn-primary w-100" type="submit">
+                      Update Event
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </>
     );
   } else {
     // Error state: Event not found (invalid ID or deleted event)
     return (
       <div>
         <p>Event not found</p>
-        {/* navigate back to dashboard on button click */}
         <button onClick={() => navigate("/")}>Back to Dashboard</button>
       </div>
     );
