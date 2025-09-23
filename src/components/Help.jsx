@@ -65,6 +65,10 @@ const Help = () => {
             <li>
               You'll be automatically logged in and taken to your dashboard
             </li>
+            <li>
+              An optional feature before registering is to change the background
+              on your wallpaper, using the icons at the bottom of the screen.
+            </li>
           </ol>
         </div>
 

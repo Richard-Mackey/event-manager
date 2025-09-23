@@ -6,7 +6,8 @@
 .logoNav {
   background-image: url(/planner.png);
   background-repeat: no-repeat;
-  margin-right: 50px;
+  margin-left: 20px;
+  margin-right: 70px;
   height: 60px;
   width: 60px;
   background-size: contain;

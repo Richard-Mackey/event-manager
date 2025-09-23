@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AddEvent from "./components/AddEvent.jsx";
 import NavBar from "./components/NavBar.jsx";
@@ -24,6 +24,16 @@ function App() {
   const [user, setUser] = useState(null);
   // Controls display between login and registration forms
   const [login, setLogin] = useState("login");
+  const [backgroundImage, setBackgroundImage] = useState("/checklist.svg");
+  useEffect(() => {
+    // Clean up any body styles when user authenticates
+    if (user !== null) {
+      document.body.style.border = "";
+      document.body.style.background = "";
+      document.body.style.margin = "";
+      document.body.style.padding = "";
+    }
+  }, [user]);
   // function to control login section
   function handleLogin(values) {
     const foundUser = mockUsers.find((user) => user.email === values.email);
@@ -48,30 +58,51 @@ function App() {
       return true;
     }
   }
+  function handleLogout() {
+    setUser(null);
+    setLogin("login");
+  }
   // Conditional rendering: authentication compared to rest of application
-  return user === null ? (
-    // User not authenticated
-    login === "login" ? (
-      <Login handleLogin={handleLogin} setLogin={setLogin} />
-    ) : (
-      <Registration
-        handleRegistration={handleRegistration}
-        setLogin={setLogin}
-      />
-    )
-  ) : (
-    // User authenticated
-    <EventsProvider>
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Dashboard user={user} />} />
-          <Route path="/AddEvent" element={<AddEvent />} />
-          <Route path="/EditEvent/:id" element={<EditEvent />} />
-          <Route path="/Help" element={<Help />} />
-        </Routes>
-      </BrowserRouter>
-    </EventsProvider>
+  return (
+    <BrowserRouter>
+      {user === null ? (
+        // User not authenticated
+        login === "login" ? (
+          <Login
+            handleLogin={handleLogin}
+            setLogin={setLogin}
+            backgroundImage={backgroundImage}
+            setBackgroundImage={setBackgroundImage}
+          />
+        ) : (
+          <Registration
+            handleRegistration={handleRegistration}
+            setLogin={setLogin}
+            backgroundImage={backgroundImage}
+            setBackgroundImage={setBackgroundImage}
+          />
+        )
+      ) : (
+        // User authenticated
+        <EventsProvider>
+          <NavBar handleLogout={handleLogout} />
+          <Routes>
+            <Route path="/" element={<Dashboard user={user} />} />
+            <Route
+              path="/AddEvent"
+              element={
+                <AddEvent
+                  backgroundImage={backgroundImage}
+                  setBackgroundImage={setBackgroundImage}
+                />
+              }
+            />
+            <Route path="/EditEvent/:id" element={<EditEvent />} />
+            <Route path="/Help" element={<Help />} />
+          </Routes>
+        </EventsProvider>
+      )}
+    </BrowserRouter>
   );
 }
 export default App;

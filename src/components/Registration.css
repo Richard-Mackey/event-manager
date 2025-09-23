@@ -1,18 +1,87 @@
 .logoLogin {
-  background-image: url(/planner.png); /* downloaded for free from https://www.flaticon.com/free-icon/planner_3277398?term=event+planner&page=1&position=2&origin=search&related_id=3277398*/
+  background-image: url(/planner.png);
   background-repeat: no-repeat;
   background-position: center;
   margin: 0 auto;
   width: 100%;
-  max-width: 280px; /* Maximum width on desktop */
-  height: 60px; /* Smaller height for mobile */
+  max-width: 280px;
+  height: 60px;
   background-size: contain;
 }
 
-/* Larger on bigger screens */
 @media (min-width: 768px) {
   .logoLogin {
-    height: 100px; /* Original height on tablet/desktop */
+    height: 100px;
     max-width: 300px;
   }
+}
+
+.registration-page::after {
+  content: "";
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  right: 50px;
+  bottom: 50px;
+  background-image: var(--watermark-image, url(/checklist.svg));
+  background-repeat: repeat;
+  background-size: 100px;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.change-display-buttons {
+  margin-top: 75px;
+}
+
+.registration-page::after {
+  content: "";
+  position: fixed;
+  top: 70px;
+  left: 70px;
+  right: 70px;
+  bottom: 70px;
+  background-image: var(--watermark-image, url(/checklist.svg));
+  background-repeat: repeat;
+  background-size: 100px;
+  opacity: 0.1;
+  pointer-events: none;
+}
+.registration-page .bg-white {
+  position: relative;
+  z-index: 10;
+}
+.registration-page-title {
+  position: fixed;
+  top: -18px;
+  left: 70px;
+  right: 70px;
+  bottom: 70px;
+}
+.registration-page-form {
+  position: fixed;
+  top: -55px;
+  left: 0px;
+  right: 0px;
+  bottom: 50px;
+}
+.background-options {
+  position: absolute;
+  bottom: 10px;
+  right: 70px;
+}
+.background-options :hover {
+  transform: scale(1.3);
+}
+@media (min-width: 768px) {
+  .logoLogin {
+    height: 100px;
+    max-width: 300px;
+  }
+}
+
+.registration-page > * {
+  position: relative;
+  z-index: 2;
 }

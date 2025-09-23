@@ -31,30 +31,51 @@ const validate = (values) => {
 
   return errors;
 };
-export default function Registration({ handleRegistration, setLogin }) {
+export default function Registration({
+  handleRegistration, // Change from handleLogin
+  setLogin,
+  backgroundImage,
+  setBackgroundImage,
+}) {
+  const [registrationError, setRegistrationError] = useState("");
   // Application of page-specific styling as the dashboard has different css properties and doing this stops it interfering
   useEffect(() => {
-    // Set body styles
+    // Apply login page specific styling to match registration page
     document.body.style.background = "rgb(216, 214, 213)";
     document.body.style.margin = "0px";
-    document.body.style.border = "50px solid white";
+    document.body.style.border = "70px solid white";
+    document.body.style.padding = "0";
+    document.body.style.height = "100vh"; // Use height instead of minHeight
+    document.body.style.overflow = "hidden";
+    document.body.style.boxSizing = "border-box"; // Include border in height calculation
 
     document.documentElement.style.background = "rgb(216, 214, 213)";
     document.documentElement.style.margin = "0px";
     document.documentElement.style.padding = "0px";
+    document.documentElement.style.height = "100%";
+
+    document.documentElement.style.setProperty(
+      "--watermark-image",
+      `url(${backgroundImage})`
+    );
 
     return () => {
       // Cleanup when leaving the page
       document.body.style.background = "";
       document.body.style.margin = "";
       document.body.style.border = "";
+      document.body.style.padding = "";
+      document.body.style.height = "";
+      document.body.style.overflow = "";
+      document.body.style.boxSizing = "";
       document.documentElement.style.background = "";
       document.documentElement.style.margin = "";
       document.documentElement.style.padding = "";
+      document.documentElement.style.height = "";
     };
-  }, []);
+  }, [backgroundImage]);
   // Track registration-specific errors
-  const [registrationError, setRegistrationError] = useState("");
+
   // Use of Formik for form state management and validation
   const formik = useFormik({
     initialValues: {
@@ -77,14 +98,14 @@ export default function Registration({ handleRegistration, setLogin }) {
 
   return (
     <div>
-      <div className="registration-page container text-center pt-4">
+      <div className="login-page container text-center">
+        <h2 className="display-5 text-center registration-page-title pt-4">
+          Event planner
+        </h2>
         <div className="row justify-content-center">
-          <div className="col-12 mb-4">
-            <h2 className="display-5 text-center">Event planner</h2>
-            <div className="logoLogin"></div>
-          </div>
+          <div className="col-12 mb-4 change-display-buttons"></div>
           {/* Responsive registration form container */}
-          <div className="col-md-6 col-lg-4 bg-white p-4 rounded shadow">
+          <div className="col-md-6 col-lg-4 bg-white p-4 rounded shadow registration-page-form">
             <form onSubmit={formik.handleSubmit}>
               <label htmlFor="email">Email Address</label>
               {/* Email field with validation */}
@@ -133,6 +154,7 @@ export default function Registration({ handleRegistration, setLogin }) {
                 Register
               </button>
               <button
+                type="button"
                 className="btn btn-primary w-100"
                 onClick={() => setLogin("login")}
               >
@@ -141,6 +163,29 @@ export default function Registration({ handleRegistration, setLogin }) {
             </form>
           </div>
         </div>
+      </div>
+      <div className="background-options">
+        <img
+          src="/checklist.svg"
+          className="rounded float-end ms-5"
+          alt="checklist image"
+          height="50px"
+          onClick={() => setBackgroundImage("/checklist.svg")}
+        ></img>
+        <img
+          src="/pencil.svg"
+          className="rounded float-end ms-5"
+          alt="checklist image"
+          height="50px"
+          onClick={() => setBackgroundImage("/pencil.svg")}
+        ></img>
+        <img
+          src="/time_planner.jpg"
+          className="rounded float-end ms-5"
+          alt="checklist image"
+          height="50px"
+          onClick={() => setBackgroundImage("/time_planner.jpg")}
+        ></img>
       </div>
     </div>
   );
