@@ -99,11 +99,10 @@ export default function Registration({
   return (
     <div>
       <div className="login-page container text-center">
-        <h2 className="display-5 text-center registration-page-title pt-4">
+        <h2 className="display-5 text-center registration-page-title">
           Event planner
         </h2>
         <div className="row justify-content-center">
-          <div className="col-12 mb-4 change-display-buttons"></div>
           {/* Responsive registration form container */}
           <div className="col-md-6 col-lg-4 bg-white p-4 rounded shadow registration-page-form">
             <form onSubmit={formik.handleSubmit}>

@@ -69,7 +69,7 @@ export default function Login({
         {/* Application branding section - consistent with registration */}
 
         {/* Responsive login form container */}
-        <div className="col-md-6 col-lg-4 bg-white p-4 rounded shadow form login-form">
+        <div className="col-md-6 col-lg-4 bg-white p-4 rounded shadow login-form">
           <form onSubmit={formik.handleSubmit}>
             <label htmlFor="email">Email Address</label>
             <input

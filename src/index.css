@@ -48,10 +48,26 @@ body {
   opacity: 0.1;
   pointer-events: none;
 }
-.event-cards {
-  z-index: 10;
-}
-
+.event-cards,
 .add-event-cards {
+  position: relative;
   z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+@media (max-width: 767px) {
+  .event-cards,
+  .add-event-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .event-cards > *,
+  .add-event-cards > * {
+    width: 100%;
+    max-width: 400px;
+  }
 }
