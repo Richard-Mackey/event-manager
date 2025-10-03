@@ -85,7 +85,7 @@ function App() {
       ) : (
         // User authenticated
         <EventsProvider>
-          <NavBar handleLogout={handleLogout} />
+          <NavBar handleLogout={handleLogout} user={user} />
           <Routes>
             <Route path="/" element={<Dashboard user={user} />} />
             <Route

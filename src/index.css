@@ -6,8 +6,25 @@ body {
   min-width: 320px;
   min-height: 100vh;
   padding-top: 70px;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
-
+.dashboard-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    lch(49.78% 77.6 288.98) 0px,
+    lch(49.78% 77.6 288.98) 300px,
+    rgb(216, 214, 213) 300px,
+    rgb(216, 214, 213) 100%
+  );
+  z-index: -1;
+}
 .dashboard-page::after {
   content: "";
   position: fixed;
@@ -34,6 +51,36 @@ body {
   background-size: 100px;
   opacity: 0.1;
   pointer-events: none;
+}
+.add-event-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    lch(49.78% 77.6 288.98) 0px,
+    lch(49.78% 77.6 288.98) 300px,
+    rgb(216, 214, 213) 300px,
+    rgb(216, 214, 213) 100%
+  );
+  z-index: -1;
+}
+.edit-event-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    lch(49.78% 77.6 288.98) 0px,
+    lch(49.78% 77.6 288.98) 300px,
+    rgb(216, 214, 213) 300px,
+    rgb(216, 214, 213) 100%
+  );
+  z-index: -1;
 }
 .edit-event-page::after {
   content: "";
@@ -69,5 +116,55 @@ body {
   .add-event-cards > * {
     width: 100%;
     max-width: 400px;
+  }
+}
+@media (max-width: 768px) {
+  .dashboard-page::after,
+  .add-event-page::after,
+  .edit-event-page::after {
+    top: 70px;
+  }
+}
+@media (max-width: 768px) {
+  .dashboard-page,
+  .add-event-page,
+  .edit-event-page {
+    background: linear-gradient(
+      to bottom,
+      rgb(216, 214, 213) 0px,
+      rgb(216, 214, 213) 100%
+    );
+  }
+}
+@media (max-width: 768px) {
+  .dashboard-title,
+  .add-event-title,
+  .edit-event-title {
+    display: none; /* Hide the original titles on mobile */
+  }
+}
+@media (max-width: 768px) {
+  body {
+    border: none !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .dashboard-title,
+  .add-event-title,
+  .edit-event-title {
+    display: none;
+  }
+}
+.help-container {
+  padding: 0 20px;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  .help-container {
+    padding: 0 15px;
   }
 }

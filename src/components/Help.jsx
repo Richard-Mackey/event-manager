@@ -5,7 +5,7 @@ import React from "react";
 
 const Help = () => {
   return (
-    <div className="help-container text-black mt-4">
+    <div className="help-container text-black ms-2 mt-4">
       {/* Table of Contents section for easy navigation within the help page */}
       <section className="help-toc">
         <h1>Help & Guide</h1>

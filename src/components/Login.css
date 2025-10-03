@@ -39,8 +39,16 @@
 }
 @media (max-width: 768px) {
   body {
-    border: 20px solid white !important;
+    border: 20px solid rgb(216, 214, 213) !important;
   }
+
+  .login-page::after {
+    top: 80px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
+
   .logoLogin {
     height: 100px;
     max-width: 300px;

@@ -12,3 +12,28 @@
   width: 60px;
   background-size: contain;
 }
+.page-title-mobile {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+@media (max-width: 991px) {
+  .container-fluid {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    flex: 0 0 auto;
+  }
+
+  .page-title-mobile {
+    flex: 1;
+    text-align: center;
+    margin-left: -100px; /* Offsets the hamburger width to truly center */
+  }
+
+  .navbar-toggler {
+    order: 3; /* Ensures hamburger stays on the right */
+  }
+}

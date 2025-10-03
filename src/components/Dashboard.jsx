@@ -46,24 +46,7 @@ export default function Dashboard({ user }) {
 
   return (
     <>
-      <div
-        className="dashboard-page"
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: `linear-gradient(
-            to bottom,
-            lch(49.78% 77.6 288.98) 0px,
-            lch(49.78% 77.6 288.98) 300px,
-            rgb(216, 214, 213) 300px,
-            rgb(216, 214, 213) 100%
-          )`,
-          zIndex: -1,
-        }}
-      />
+      <div className="dashboard-page" />
 
       <div
         style={{
@@ -72,7 +55,7 @@ export default function Dashboard({ user }) {
           paddingTop: "10px",
         }}
       >
-        <h2 className="text-white display-5 text-center">
+        <h2 className="text-white display-5 text-center dashboard-title d-none d-lg-block">
           {user.firstName}'s Events
         </h2>
 

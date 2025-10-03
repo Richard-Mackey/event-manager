@@ -63,24 +63,7 @@ export default function AddEvent() {
   }, [formik.values.starttime]);
   return (
     <>
-      <div
-        className="add-event-page"
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: `linear-gradient(
-            to bottom,
-            lch(49.78% 77.6 288.98) 0px,
-            lch(49.78% 77.6 288.98) 300px,
-            rgb(216, 214, 213) 300px,
-            rgb(216, 214, 213) 100%
-          )`,
-          zIndex: -1,
-        }}
-      />
+      <div className="add-event-page" />
 
       <div
         style={{
@@ -92,7 +75,7 @@ export default function AddEvent() {
         <div className="container text-center">
           <div className="row justify-content-center">
             <div className="col-12 col-md-8 col-lg-6">
-              <h2 className="text-white display-5 text-center mt-4">
+              <h2 className="text-white display-5 text-center mt-4 add-event-title d-none d-lg-block">
                 Add an event
               </h2>
               <div className="bg-white p-2 p-md-4 rounded shadow add-event-cards">
